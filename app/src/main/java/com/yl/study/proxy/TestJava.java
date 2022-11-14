@@ -2,6 +2,10 @@ package com.yl.study.proxy;
 
 import android.util.Log;
 
+import androidx.annotation.IntDef;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -33,11 +37,16 @@ public class TestJava {
         animal.doing();
 
 
+        System.getProperties().put("jdk.proxy.ProxyGenerator.saveGeneratedFiles", "true");
+
+        // 生成一个代理对象。
         Animal animal2 = (Animal) Proxy.newProxyInstance(
+//                TestJava.class.getClassLoader(),
                 Dog.class.getClassLoader(),
                 new Class[]{Animal.class},
                 new MyInHandler());
-        animal2.color();
+//        animal2.color();
+        animal2.toString();// 也会执行到invoke(); 区别
 
     }
 
