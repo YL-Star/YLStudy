@@ -37,7 +37,7 @@ public class TestJava {
         animal.doing();
 
 
-        System.getProperties().put("jdk.proxy.ProxyGenerator.saveGeneratedFiles", "true");
+        //System.getProperties().put("jdk.proxy.ProxyGenerator.saveGeneratedFiles", "true");
 
         // 生成一个代理对象。
         Animal animal2 = (Animal) Proxy.newProxyInstance(

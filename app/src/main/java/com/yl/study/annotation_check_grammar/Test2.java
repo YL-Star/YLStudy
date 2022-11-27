@@ -1,5 +1,7 @@
 package com.yl.study.annotation_check_grammar;
 
+import java.lang.reflect.Type;
+
 /**
  * @date: $ $
  * @author: yanglei
@@ -12,6 +14,7 @@ public class Test2 {
     public static void main(String[] args) {
 //        test(1);会报错。idea语法检查。
         test(LANCE);
+
     }
 
     public static void test(@Teacher int teacher) {

@@ -12,5 +12,9 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "YLStudy"
 include ':app'
+include ':lib'
+include ':complier'
+include ':annotation'

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,8 +14,32 @@
         android:theme="@style/Theme.YLStudy"
         tools:targetApi="31">
         <activity
-            android:name=".TwoActivity"
+            android:name=".camera.CameraActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".BaseActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- android:process=":processYl" -->
+        <activity
+            android:name=".aidl.client.TestProcessActivity"
+            android:exported="false"
+            android:label="TestProcessActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity android:name=".memory.MemoryActivity" />
+        <activity
+            android:name=".TwoActivity"
+            android:exported="false"
+            android:label="TwoActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -32,6 +57,18 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <service
+            android:name=".aidl.server.MyServerService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
