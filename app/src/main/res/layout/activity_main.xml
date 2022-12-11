@@ -24,4 +24,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/hilt_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hilt 测试"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/webView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="打开WebView"
+        tools:ignore="MissingConstraints" />
+
 </LinearLayout>

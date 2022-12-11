@@ -1,32 +1,22 @@
 package com.yl.study.aidl.client;
 
 import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.os.Process;
-import android.os.RemoteException;
-import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.yl.study.IMyAidlInterface;
 import com.yl.study.R;
-import com.yl.study.TwoActivity;
-import com.yl.study.aidl.bean.Student;
-import com.yl.study.aidl.server.DataUtils;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class TestProcessActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        Debug.stopMethodTracing();
+//        Debug.stopMethodTracing();
     }
 
     @SuppressLint("MissingInflatedId")
@@ -34,45 +24,30 @@ public class TestProcessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-//        getLifecycle().addObserver(presenter);
 
         Log.d(
                 "tag-",
-                "====TestActivity==onCreate============" + Process.myPid() + ";" + Process.myUid()
+                "====TestActivity==onCreate============" + Process.myPid() + ";" + Process.myTid()
         );
-//        presenter.bindService();
+        initView();
+        initData();
+    }
+
+    private void initView() {
         findViewById(R.id.btn).setOnClickListener(v -> {
-
-//            presenter.addStudent(new Student("Tom", 19));
-//            List<Student> studentList = presenter.getStudentList();
-//            Log.d("tag-", "student:" + Arrays.toString(studentList.toArray()));
-
+            ComponentName componentName = new ComponentName(this, "com.yl.study.TwoActivity");
+            Intent intent = new Intent();
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setComponent(componentName);
+            startActivity(intent);
+//            startActivity(new Intent(this, MainActivityProcessor.getClass("/app/MainActivity")));
         });
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        thread.setName("hahaThread-name");
-        thread.start();
-
+    private void initData() {
+        presenter.bindService();
     }
+
 
     private final Presenter presenter = new Presenter(this, new ICallback() {
         @Override

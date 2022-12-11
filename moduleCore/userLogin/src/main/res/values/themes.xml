@@ -1,0 +1,3 @@
+<resources>
+  <style name="Theme.YLStudy" parent="Theme.MaterialComponents.Light"/>
+</resources>

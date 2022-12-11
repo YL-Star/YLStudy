@@ -1,8 +1,21 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+// 老版本引入问题，兼容写法：
+
+buildscript {
+    dependencies {
+        //三方组件配置classpath的一般都用到了字节码插装。
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
+    }
+}
+
 plugins {
     id 'com.android.application' version '7.3.1' apply false
     id 'com.android.library' version '7.3.1' apply false
     id 'org.jetbrains.kotlin.android' version '1.7.20' apply false
-    //三方组件配置classpath的一般都用到了字节码插装。
-
 }
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+// 必须放在下边：The pluginManagement {} block must appear before any other statements in the script.
+apply from : 'app_config.gradle'

@@ -1,8 +1,7 @@
 package com.yl.study.annotation_check_grammar;
 
-import java.lang.reflect.Type;
-
 /**
+ * 参数限制
  * @date: $ $
  * @author: yanglei
  * @description

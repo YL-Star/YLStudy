@@ -3,14 +3,11 @@ package com.yl.study.camera
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
-import androidx.camera.core.CameraX
 import androidx.camera.core.Preview
-import androidx.camera.core.impl.ImageAnalysisConfig
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.yl.study.databinding.ActivityCameraBinding
-import kotlinx.android.synthetic.main.activity_camera.*
 
 class CameraActivity : AppCompatActivity() {
 
@@ -48,7 +45,7 @@ class CameraActivity : AppCompatActivity() {
         var camera = cameraProvider.bindToLifecycle(this as LifecycleOwner, cameraSelector, preview)
 
 
-        preview.setSurfaceProvider(previewView.surfaceProvider)
+        preview.setSurfaceProvider(binding.previewView.surfaceProvider)
 
 
 

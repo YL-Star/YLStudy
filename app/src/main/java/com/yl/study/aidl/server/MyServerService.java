@@ -2,17 +2,13 @@ package com.yl.study.aidl.server;
 
 import android.app.Service;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
 import com.yl.study.IMyAidlInterface;
-import com.yl.study.MyApplication;
-import com.yl.study.TwoActivity;
 import com.yl.study.aidl.bean.Student;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,15 +17,11 @@ import java.util.List;
 public class MyServerService extends Service {
     private static final String TAG = "tag-" + MyServerService.class.getSimpleName();
 
-    private MyServerService() {
-
-    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "===========onCreate=============");
-        startActivity(new Intent(this, TwoActivity.class));
     }
 
     @Override
@@ -56,8 +48,7 @@ public class MyServerService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-//         TODO: Return the communication channel to the service.
-//        throw new UnsupportedOperationException("Not yet implemented");
+
         return new IMyAidlInterface.Stub() {
 
             @Override

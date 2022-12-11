@@ -1,3 +1,4 @@
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -15,6 +16,13 @@ dependencyResolutionManagement {
 
 rootProject.name = "YLStudy"
 include ':app'
-include ':lib'
-include ':complier'
-include ':annotation'
+include ':apt:compiler'
+include ':apt:annotation'
+
+include ':moduleCore:userLogin'
+include ':moduleCore:webview'
+include ':moduleBase:libbase'
+include ':moduleComm:comm'
+include ':apt:arouter-api'
+include ':moduleCore:order'
+include ':nativelib'

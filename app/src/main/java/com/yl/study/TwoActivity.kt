@@ -27,6 +27,11 @@ class TwoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_two)
         InjectUtils.parseIntentParams(this)
         Log.d("tag-", "name:$name;age:$age;persion:${person.toString()}")//name:jack;age:10
+//        getLifecycle().addObserver(presenter);
+        Log.d(
+            "tag-",
+            "====TwoActivity==onCreate============" + Process.myPid() + ";" + Process.myTid()
+        )
 
         Log.d("tag-", "name:" + Utils.getMap("name"))
         val thread = Thread(futureTask, "test sync msg")

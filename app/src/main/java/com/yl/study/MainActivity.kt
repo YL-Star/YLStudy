@@ -6,27 +6,22 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.os.Debug
-import android.os.Environment
 import android.os.Process
-import android.text.Spannable.Factory
 import android.text.TextUtils
 import android.util.Log
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import com.yl.annotation.arouter.ARouter
+import com.yl.base.ServiceLoadUtils
+import com.yl.comm.autoservice.IWebViewService
 import com.yl.study.aidl.bean.Student
 import com.yl.study.aidl.client.TestProcessActivity
 import com.yl.study.aidl.server.DataUtils
 import com.yl.study.annotation.Person
 import com.yl.study.camera.CameraActivity
 import com.yl.study.databinding.ActivityMainBinding
-import com.yl.study.sync_msg.Utils
 import com.yl.study.utils.CheckPermissionUtils
-import kotlinx.android.synthetic.main.activity_main.*
-import java.io.File
 import java.util.*
-
+@ARouter(path = "/app/MainActivity")
 class MainActivity : AppCompatActivity() {
     companion object {
         val TAG = "tag-" + MainActivity::class.java.simpleName
@@ -43,15 +38,18 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        DataBindingUtil.insetContentView(this,R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
+
         Log.d(
             "tag-",
-            "====MainActivity==onCreate============" + Process.myPid() + ";" + Process.myUid()
+            "====MainActivity==onCreate============" + Process.myPid() + ";" + Process.myTid()
         )
         initView()
         initData()
         registerReceiver()
+
     }
 
     private fun initData() {
@@ -61,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        jumpProcessBtn.setOnClickListener {
+        binding.jumpProcessBtn.setOnClickListener {
             startActivity(
                 Intent(this, TestProcessActivity::class.java)
                     .putExtra("name_", "jack")
@@ -70,10 +68,19 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        cameraxBtn.setOnClickListener {
+        binding.cameraxBtn.setOnClickListener {
             CheckPermissionUtils.setContext(this, CheckPermissionUtils.InterfPermission {
                 startActivity(Intent(this, CameraActivity::class.java))
             }).CheckCamera()
+        }
+
+        binding.hiltTest.setOnClickListener {
+//            startActivity(Intent(this, HiltTestActivity::class.java))
+        }
+
+        binding.webView.setOnClickListener {
+            val load = ServiceLoadUtils.load(IWebViewService::class.java)
+            load.startWebViewActivity(this, "https://m.baidu.com")
         }
     }
 

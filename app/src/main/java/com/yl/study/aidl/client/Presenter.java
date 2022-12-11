@@ -5,7 +5,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
@@ -13,15 +12,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.OnLifecycleEvent;
 
 import com.yl.study.IMyAidlInterface;
 import com.yl.study.aidl.bean.Student;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -97,6 +92,5 @@ public class Presenter implements DefaultLifecycleObserver {
         }
         return null;
     }
-
 
 }
